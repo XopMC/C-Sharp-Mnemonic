@@ -15,11 +15,15 @@ namespace bitcoin_wallet_check_csharp
         private static long Total = 0;
         private static long Wet = 0;
         private static long speed = 0;
+        private static long speedAD = 0;
         private static HashSet<string> _addressDb;
         private static string? win;
         static DateTime t1, t2;
         private static long cur;
+        private static string? PATH;
+        private static string? DerPath;
         private static int words;
+        private static int derivation;
 
         private static void Main(string[] args)
         {
@@ -31,7 +35,22 @@ namespace bitcoin_wallet_check_csharp
             {
                 string filePath = args[0];
                 win = Environment.MachineName;
-                Console.WriteLine("\n\nDeveloped by @XopMC for t.me/brythbit\n\n");
+                Console.WriteLine("\n\nDeveloped by @XopMC for https://t.me/brythbit\n\n");
+                Console.WriteLine(" ___________________________________________________________________");
+                Console.WriteLine("|###################################################################|");
+                Console.WriteLine("|#                                                                 #|");
+                Console.WriteLine("|#  #         #                    #           #      #########    #|");
+                Console.WriteLine("|#   #       #                     # #       # #     ###     ###   #|");
+                Console.WriteLine("|#    #     #                      #   #   #   #    ##             #|");
+                Console.WriteLine("|#     #   #                       #     #     #    ##             #|");
+                Console.WriteLine("|#       #          # #    # # #   #           #    ##             #|");
+                Console.WriteLine("|#     #   #      #     #  #    #  #           #    ##             #|");
+                Console.WriteLine("|#    #     #     #     #  # # #   #           #     ##            #|");
+                Console.WriteLine("|#   #       #    #     #  #       #           #      ###     ###  #|");
+                Console.WriteLine("|#  #         #     # #    #       #           #       #########   #|");
+                Console.WriteLine("|#                                                                 #|");
+                Console.WriteLine("|###################################################################|");
+
                 if (win == "XOPMC")
                 {
                     while (true)
@@ -57,13 +76,13 @@ namespace bitcoin_wallet_check_csharp
                     {
                         Silent = false;
                     }
-                    Console.WriteLine("\nMax threads | Доступно потоков: {0} ", (object)processorCount);
+                    Console.WriteLine("\nMax threads | Доступно потоков: {0} ", processorCount);
                     Console.WriteLine("\nHow many threads should use? | Сколько потоков задействуем? :");
                     int num = Convert.ToInt32(Console.ReadLine());
                     if (num > processorCount)
                         num = processorCount;
-                    Console.WriteLine("\nStarting {0} threads... | Запускаю {1} поток(а)ов...\n", (object)num, (object)num);
-                    Console.WriteLine("Loaded addresses from {0}  | Загружены адреса из {1} \n", (object)filePath, (object)filePath);
+                    Console.WriteLine("\nStarting {0} threads... | Запускаю {0} поток(а)ов...\n", num);
+                    Console.WriteLine("Loaded addresses from {0}  | Загружены адреса из {0} \n", filePath);
                     _addressDb = LoadDatabase(filePath);
                     Console.WriteLine("Input required amount of words for mnemonic ( 12, 15, 18, 21, 24) | Введите количество слов для мнемоники ( 12, 15, 18, 21, 24): ");
                     words = Convert.ToInt32(Console.ReadLine());
@@ -72,7 +91,11 @@ namespace bitcoin_wallet_check_csharp
                         Console.WriteLine("\nWrong words count! Starting with 12 words | Введено неверное количество слов, включаю стандартный режим по 12 словам.");
                         words = 12;
                     }
-                    Console.WriteLine("\nStarting porgramm with {0} words | Запускаю режим работы по {1} словам", (object)words, (object)words);
+                    Console.WriteLine("\nInput Derivation PATH without m/, (default - 44'/0'/0'/0/0) | Введите путь деривации без m/, (по стандарту - 44'/0'/0'/0/0");
+                    PATH = Console.ReadLine();
+                    Console.WriteLine("\nInput Derivation deep (for example - 5) | Введите глубину деривации (например - 5)");
+                    derivation = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("\nStarting porgramm with {0} words, with (m/{1}) derivation PATH | Запускаю режим работы по {0} словам, с путём деривации (m/{1}) ", words, PATH);
                     List<Thread> threadList = new();
                     for (int index = 0; index < num; ++index)
                     {
@@ -82,7 +105,7 @@ namespace bitcoin_wallet_check_csharp
                     IsRunning = true;
                     foreach (Thread thread in threadList)
                         thread.Start();
-                    Console.WriteLine("\nThreads are started... | Потоки запущены...", (object)processorCount);
+                    Console.WriteLine("\nThreads are started... | Потоки запущены...");
                     Console.CancelKeyPress += new ConsoleCancelEventHandler(MyHandler);
                     Console.WriteLine("\nCTRL+C to interrupt the process | CTRL+C для остановки процесса");
                     if (Silent == true)
@@ -90,7 +113,7 @@ namespace bitcoin_wallet_check_csharp
                         while (IsRunning)
                         {
                             //Console.Write("\r" + new string(' ', Console.WindowWidth - 1) + "\r");
-                            Console.Write("\rTotal: {0} | Found: {1} | Speed: {2} Keys/s | Elapsed: {3}", (object)Total, (object)Wet, (object)speed, (object)cur);
+                            Console.Write("\rTotal: {0} | Found: {1} | Speed: {2} Keys/s  | Speed: {3} Addresses/s | Elapsed: {4}", Total, Wet, speed, speedAD, cur);
                             Thread.Sleep(1000);
                         }
                     }
@@ -105,6 +128,8 @@ namespace bitcoin_wallet_check_csharp
             Console.WriteLine("\nInterupting...| Остановка...");
             e.Cancel = true;
             Console.WriteLine("\n\nDeveloped by @XopMC for t.me/brythbit\n\n\n");
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadLine();
             IsRunning = false;
             Console.CancelKeyPress -= new ConsoleCancelEventHandler(MyHandler);
 
@@ -126,10 +151,12 @@ namespace bitcoin_wallet_check_csharp
         private static void WorkerThread()
         {
             t1 = DateTime.Now;
-            Thread.Sleep(1000);
-            KeyPath keyPath = new("44'/0'/0'/0/0");
-            while (IsRunning)
+            Thread.Sleep(100);
+            //KeyPath keyPath = new(PATH);
+            
+            while (true)
             {
+                int a = 0;
                 Mnemonic? mnemonic = null;
                 if (words == 12)
                 {
@@ -152,57 +179,74 @@ namespace bitcoin_wallet_check_csharp
                     mnemonic = new(Wordlist.English, WordCount.TwentyFour);
                 }
                 //Mnemonic mnemonic = "angle bonus rich melody cotton lyrics skate stuff fragile guard fresh snake glance join artefact slender sting craft decorate time absent magic index entry";
-                ExtKey extKey = mnemonic.DeriveExtKey().Derive(keyPath);
-                string address = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
-                string address1 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Segwit, Network.Main).ToString();
-                string address2 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.SegwitP2SH, Network.Main).ToString();
-                string address3 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.TaprootBIP86, Network.Main).ToString();
-                bool flag = HasBalance(address);
-                bool flag1 = HasBalance(address1);
-                bool flag2 = HasBalance(address2);
-                bool flag3 = HasBalance(address3);
-
-                Interlocked.Increment(ref Total);
-                t2 = DateTime.Now;
-                cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
-                speed = Total / cur;
-                if ((flag != false) || (flag1 != false) || (flag2 != false) || (flag3 != false))
+                while (a <= derivation)
                 {
-                    string str = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToString();
-                    string contents = string.Format("Address: {0} | Has balance: {1} | Mnemonic phrase: {2} | Private: {3}\n\n", (object)address, (object)flag, (object)mnemonic.ToString(), (object)str);
-                    object outFileLock = Program.outFileLock;
-                    bool lockTaken = false;
-                    try
+                    DerPath = PATH.Remove(PATH.Length - 1) + a.ToString();
+                    KeyPath keyPath = new(DerPath);
+                    ExtKey extKey = mnemonic.DeriveExtKey().Derive(keyPath);
+
+                    string address = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
+                    string address1 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Segwit, Network.Main).ToString();
+                    string address2 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.SegwitP2SH, Network.Main).ToString();
+                    string address3 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.TaprootBIP86, Network.Main).ToString();
+                    bool flag = HasBalance(address);
+                    bool flag1 = HasBalance(address1);
+                    bool flag2 = HasBalance(address2);
+                    bool flag3 = HasBalance(address3);
+
+                    Interlocked.Increment(ref Total);
+                    t2 = DateTime.Now;
+                    cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
+                    if (cur != 0)
                     {
-                        Monitor.Enter(outFileLock, ref lockTaken);
-                        File.AppendAllText("wet.txt", contents);
+                        speed = Total / cur;
+                        speedAD = speed * 4;
                     }
-                    finally
+                    else
                     {
-                        if (lockTaken)
-                            Monitor.Exit(outFileLock);
+                        Thread.Sleep(1000);
+                        t2 = DateTime.Now;
+                        cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
+                        speed = Total / cur;
+                        speedAD = speed * 4;
                     }
-                    Interlocked.Increment(ref Wet);
+                    if ((flag != false) || (flag1 != false) || (flag2 != false) || (flag3 != false))
+                    {
+                        string str = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToString();
+                        string contents = string.Format("Address: {0} | Has balance: {1} | Mnemonic phrase: {2} | Private: {3}\n\n", address, flag, mnemonic.ToString(), str);
+                        object outFileLock = Program.outFileLock;
+                        bool lockTaken = false;
+                        try
+                        {
+                            Monitor.Enter(outFileLock, ref lockTaken);
+                            File.AppendAllText("wet.txt", contents);
+                        }
+                        finally
+                        {
+                            if (lockTaken)
+                                Monitor.Exit(outFileLock);
+                        }
+                        Interlocked.Increment(ref Wet);
+                    }
+                    else
+                    {
+                        if (Silent == false)
+                        {
+                            byte[] pvk = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToBytes();
+                            string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
+                            hex = hex.Remove(hex.Length - 2);
+                            Console.Write("\nAddress:\n|Legacy: {0} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|Mnemonic phrase: {4} \n|Path: {5} \n|PVK: {6}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |", address, address1, address2, address3, mnemonic, keyPath, hex, Total, Wet, speed, speedAD);
+                        }
+                        else if (Silent == true)
+                        {
+                            //Console.Write("\r" + new string(' ', Console.WindowWidth - 1) + "\r");
+                            //Console.Write("\rTotal: {0} | Wet: {1} | Speed: {2} Keys/s | Elapsed: {3}", (object)Total, (object)Wet, (object)speed, (object)cur);
+                            //Console.WriteLine("speed");
+
+                        }
+                    }
+                    a++;
                 }
-                else
-                {
-                    if (Silent == false)
-                    {
-                        byte[] pvk = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToBytes();
-                        string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
-                        hex = hex.Remove(hex.Length - 2);
-                        Console.Write("\nAddress:\n|Legacy: {0} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n| Mnemonic phrase: {4} \n| Path: {5} \n| PVK: {6}\n Total: {7} | Found: {8} | Speed: {9} Keys/s", (object)address, (object)address1, (object)address2, (object)address3, (object)mnemonic, (object)keyPath, (object)hex, (object)Total, (object)Wet, (object)speed);
-                    }
-                    else if (Silent == true)
-                    {
-                        //Console.Write("\r" + new string(' ', Console.WindowWidth - 1) + "\r");
-                        //Console.Write("\rTotal: {0} | Wet: {1} | Speed: {2} Keys/s | Elapsed: {3}", (object)Total, (object)Wet, (object)speed, (object)cur);
-                        //Console.WriteLine("speed");
-
-                    }
-                }
-
-
             }
         }
     }
