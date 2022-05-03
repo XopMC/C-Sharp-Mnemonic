@@ -34,6 +34,7 @@ Where `bit.txt` - your addresses base `Possible to use tabular .tsv bases!`
 
 # Another way to start - drug and drop base file into program icon
 
+![Снимок1](https://user-images.githubusercontent.com/89750173/166121357-5ee60d2f-8f49-4de1-8fcc-084561a00ea9.PNG)
 
 When the program finds the wallet, there will be output to the screen (if Debug mode is not enabled) and to the wet.txt file  
 
