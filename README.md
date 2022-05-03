@@ -2,7 +2,7 @@
 ![image](https://user-images.githubusercontent.com/89750173/166493263-476fefcd-dab1-4d1a-83ae-5861b9460891.png)
 
 
-Bitcoin Mnemonic Bruteforce C#  
+Mnemonic Bruteforce C#  
 
 # Eng  
 ## 03.05.2022 BIG UPDATE - Ver. 3.0.0  
