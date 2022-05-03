@@ -10,7 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NBitcoin" Version="6.0.18" />
+    <PackageReference Include="NBitcoin" Version="7.0.7" />
+    <PackageReference Include="Nethereum.HdWallet" Version="4.4.1" />
+    <PackageReference Include="Nethereum.Web3" Version="4.4.1" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.IO" Version="4.3.0" />
     <PackageReference Include="System.Runtime" Version="4.3.1" />
