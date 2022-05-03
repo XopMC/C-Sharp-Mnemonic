@@ -1,11 +1,14 @@
 # C#-Mnemonic  
-![Снимок](https://user-images.githubusercontent.com/89750173/166121137-da013484-1edd-497f-83ea-056ffd0ef078.PNG)
+![image](https://user-images.githubusercontent.com/89750173/166493263-476fefcd-dab1-4d1a-83ae-5861b9460891.png)
 
-Bitcoin Mnemonic Bruteforce C#  
+
+Mnemonic Bruteforce C#  
 
 # Eng  
-## 01.05.2022 BIG UPDATE
-✅ Global optimization + bugfix  
+## 03.05.2022 BIG UPDATE - Ver. 3.0.0  
+✅ Add Ethereum mode  
+✅ Add ETH + BTC mode (common base is required)  
+✅ Support BIP39 Passphrase  
 
 Implemented:  
 ✅ Silent(normal) mode - minimal display output  
@@ -30,6 +33,7 @@ with your btc Base in argument
 Where `bit.txt` - your addresses base `Possible to use tabular .tsv bases!` 
 
 # Another way to start - drug and drop base file into program icon
+
 ![Снимок1](https://user-images.githubusercontent.com/89750173/166121357-5ee60d2f-8f49-4de1-8fcc-084561a00ea9.PNG)
 
 When the program finds the wallet, there will be output to the screen (if Debug mode is not enabled) and to the wet.txt file  
@@ -40,8 +44,10 @@ Donation: bc1qlwcaxwnp2ulndlppdc0wvkdz7ly2npfuz6ny0a
 --------
 
 # Rus  
-## 01.05.2022 БОЛЬШОЕ ОБНОВЛЕНИЕ
-✅ Глобальная оптимизация + багфикс  
+## 03.05.2022 БОЛЬШОЕ ОБНОВЛЕНИЕ  - Ver. 3.0.0  
+✅ Добавлен режим по Эфиру  
+✅ Добавлен режим Эфир + Биткоин (нужна единая база)  
+✅ Добавлена возможность использования BIP39 Passphrase  
 
 Реализовано:  
 ✅ Тихий (нормальный) режим - минимальный вывод на дисплей  
