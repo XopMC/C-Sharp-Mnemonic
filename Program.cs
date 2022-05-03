@@ -178,6 +178,7 @@ namespace bitcoin_wallet_check_csharp
                     Console.WriteLine("\nThreads are started... | Потоки запущены...");
                     Console.WriteLine("\nCTRL+C to interrupt the process | CTRL+C для остановки процесса");
                     if (mode == 1)
+                    {
                         if (Silent == true)
                         {
                             while (IsRunning)
@@ -187,7 +188,9 @@ namespace bitcoin_wallet_check_csharp
                                 Thread.Sleep(1000);
                             }
                         }
-                    else if ((mode == 2) || (mode == 3))
+                    }
+                    else if (mode == 2)
+                    {
                         if (Silent == true)
                         {
                             while (IsRunning)
@@ -197,6 +200,19 @@ namespace bitcoin_wallet_check_csharp
                                 Thread.Sleep(1000);
                             }
                         }
+                    }
+                    else if (mode == 3)
+                    {
+                        if (Silent == true)
+                        {
+                            while (IsRunning)
+                            {
+                                //Console.Write("\r" + new string(' ', Console.WindowWidth - 1) + "\r");
+                                Console.Write("\rTotal: {0} | Found: {1} | Speed: {2} Keys/s | Elapsed: {3}", Total, Wet, speed, cur);
+                                Thread.Sleep(1000);
+                            }
+                        }
+                    }
                     Console.CancelKeyPress += new ConsoleCancelEventHandler(MyHandler);
 
                     foreach (Thread thread in threadList)
