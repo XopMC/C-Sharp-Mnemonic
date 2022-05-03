@@ -33,7 +33,7 @@ with your btc Base in argument
 Where `bit.txt` - your addresses base `Possible to use tabular .tsv bases!` 
 
 # Another way to start - drug and drop base file into program icon
-![image](https://user-images.githubusercontent.com/89750173/166493263-476fefcd-dab1-4d1a-83ae-5861b9460891.png)
+
 
 When the program finds the wallet, there will be output to the screen (if Debug mode is not enabled) and to the wet.txt file  
 
