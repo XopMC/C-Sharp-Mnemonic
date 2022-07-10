@@ -5,21 +5,23 @@
 Mnemonic Bruteforce C#  
 
 # Eng  
-## 03.05.2022 BIG UPDATE - Ver. 3.0.0  
-✅ Add Ethereum mode  
-✅ Add ETH + BTC mode (common base is required)  
-✅ Support BIP39 Passphrase  
+## 10.07.2022 UPDATE - Ver. 4.0.0  
+✅ ADDED UNCOMPRESSED ADDRESSES  
+✅ Add searching hardened and not hardened addresses  
+![image](https://user-images.githubusercontent.com/89750173/178151102-57ea9120-399f-4d75-b379-f208d4ca9dab.png)
 
 Implemented:  
 ✅ Silent(normal) mode - minimal display output  
 ✅ Debug mode - shows the complete process of generating mnemonics + 4 addresses and a private key  
-✅ checking 4 addresses : (Compressed, Segwit ( starting with 3), p2wpkh, p2wsh (starting with bc1)  
+✅ checking 5 addresses : (Compressed, Uncompressed, Segwit ( starting with 3), p2wpkh, p2wsh (starting with bc1)  
 ✅ choice amount of words to generate mnemonics (12, 15, 18, 21, 24)  
-✅ checking custom derivation paths + variable derivation deep
+✅ checking custom derivation paths + variable derivation deep  
+✅ Add Ethereum mode  
+✅ Add ETH + BTC mode (common base is required)  
+✅ Support BIP39 Passphrase  
 
 Planning to add:  
 ❌ use bloomfilter - because .txt base takes a lot of RAM  
-❌ add Uncompressed addresses check - failed yet  
 ❌ add other languages for mnemonic  
 
 ## Usage  
@@ -44,21 +46,24 @@ Donation: bc1qlwcaxwnp2ulndlppdc0wvkdz7ly2npfuz6ny0a
 --------
 
 # Rus  
-## 03.05.2022 БОЛЬШОЕ ОБНОВЛЕНИЕ  - Ver. 3.0.0  
-✅ Добавлен режим по Эфиру  
-✅ Добавлен режим Эфир + Биткоин (нужна единая база)  
-✅ Добавлена возможность использования BIP39 Passphrase  
+## 10.07.2022 ОБНОВЛЕНИЕ  - Ver. 4.0.0  
+✅ ДОБАВИЛ ПОИСК ПО НЕСЖАТЫМ АДРЕСАМ!!!  
+✅ Добавил возможность одновременного поиска hardened и не hardened адресов  
+![image](https://user-images.githubusercontent.com/89750173/178151102-57ea9120-399f-4d75-b379-f208d4ca9dab.png)
+
 
 Реализовано:  
 ✅ Тихий (нормальный) режим - минимальный вывод на дисплей  
 ✅ Режим отладки - показывает полный процесс генерации мнемоники + 4 адреса и приватный ключ  
-✅ проверка 4 адресов: (сжатый, Segwit (начиная с 3), p2wpkh, p2wsh (начиная с bc1)  
+✅ проверка 5 адресов: (сжатый, несжатый, Segwit (начиная с 3), p2wpkh, p2wsh (начиная с bc1)  
 ✅ выбор количества слов для создания мнемоники (12, 15, 18, 21, 24)  
-✅ Кастомные пути деривации + настраиваемая глубина пути
+✅ Кастомные пути деривации + настраиваемая глубина пути  
+✅ Добавлен режим по Эфиру  
+✅ Добавлен режим Эфир + Биткоин (нужна единая база)  
+✅ Добавлена возможность использования BIP39 Passphrase  
 
 Планирую добавить:   
 ❌ использовать bloomfilter - потому что база .txt занимает много оперативной памяти  
-❌ добавить проверку несжатых адресов - пока не удалось  
 ❌ добавить другие языки для мнемоники  
 
 ## Использование 
