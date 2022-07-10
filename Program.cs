@@ -285,10 +285,12 @@ namespace bitcoin_wallet_check_csharp
                         NBitcoin.KeyPath keyPath = new(DerPath);
                         ExtKey extKey = mnemonic.DeriveExtKey(BIP39_Passphrase).Derive(keyPath);
 
+                        string address0 = extKey.Neuter().PubKey.Decompress().GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
                         string address = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
                         string address1 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Segwit, Network.Main).ToString();
                         string address2 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.SegwitP2SH, Network.Main).ToString();
                         string address3 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.TaprootBIP86, Network.Main).ToString();
+                        bool flag5 = HasBalance(address0);
                         bool flag = HasBalance(address);
                         bool flag1 = HasBalance(address1);
                         bool flag2 = HasBalance(address2);
@@ -300,7 +302,7 @@ namespace bitcoin_wallet_check_csharp
                         if (cur != 0)
                         {
                             speed = Total / cur;
-                            speedAD = speed * 4;
+                            speedAD = speed * 5;
                         }
                         else
                         {
@@ -308,16 +310,16 @@ namespace bitcoin_wallet_check_csharp
                             t2 = DateTime.Now;
                             cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
                             speed = Total / cur;
-                            speedAD = speed * 4;
+                            speedAD = speed * 5;
                         }
-                        if ((flag != false) || (flag1 != false) || (flag2 != false) || (flag3 != false))
+                        if ((flag5 != false) || (flag != false) || (flag1 != false) || (flag2 != false) || (flag3 != false))
                         {
                             bool flag0 = true;
                             byte[] pvk = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToBytes();
                             string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
                             hex = hex.Remove(hex.Length - 2);
-                            Console.Write("\nAddress:\n|Legacy: {0} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|Mnemonic phrase: {4} \n|Path: {5} \n|PVK: {6}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, hex, Total, Wet, speed, speedAD);
-                            string contents = string.Format("|Addresses: {0}  |Balance: {8}\n|{5}  |Balance: {9}\n|{6}  |Balance: {10}\n|{7}  |Balance: {11} \n|Has balance: {1} \n|Mnemonic phrase: {2} \n|Private: {3} \n|PATH: {4}\n\n", address, flag0, mnemonic.ToString(), hex, DerPath.ToString(), address1, address2, address3, flag, flag1, flag2, flag3);
+                            Console.Write("\nAddress:\n|Compress: {0} \n|Uncompress: {11} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|Mnemonic phrase: {4} \n|Path: {5} \n|PVK: {6}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, hex, Total, Wet, speed, speedAD, address0);
+                            string contents = string.Format("|Addresses: {0}  |Balance: {8}\n|{5}  |Balance: {9}\n|{6}  |Balance: {10}\n|{7}  |Balance: {11} \n|{12}  |Balance: {13} \n|Has balance: {1} \n|Mnemonic phrase: {2} \n|Private: {3} \n|PATH: {4}\n\n", address, flag0, mnemonic.ToString(), hex, DerPath.ToString(), address1, address2, address3, flag, flag1, flag2, flag3, address0, flag5);
                             object outFileLock = Program.outFileLock;
                             bool lockTaken = false;
                             try
@@ -339,7 +341,71 @@ namespace bitcoin_wallet_check_csharp
                                 byte[] pvk = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToBytes();
                                 string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
                                 hex = hex.Remove(hex.Length - 2);
-                                Console.Write("\nAddress:\n|Legacy: {0} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|Mnemonic phrase: {4} \n|Path: {5} \n|PVK: {6}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, hex, Total, Wet, speed, speedAD);
+                                Console.Write("\nAddress:\n|Compress: {0} \n|Uncompress: {11}\n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|Mnemonic phrase: {4} \n|Path: {5} \n|PVK: {6}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, hex, Total, Wet, speed, speedAD, address0);
+                            }
+                        }
+
+                        DerPath = PATH.Remove(PATH.Length - 1) + a + "'";
+                        keyPath = new(DerPath);
+                        extKey = mnemonic.DeriveExtKey(BIP39_Passphrase).Derive(keyPath);
+
+                        address0 = extKey.Neuter().PubKey.Decompress().GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
+                        address = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
+                        address1 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Segwit, Network.Main).ToString();
+                        address2 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.SegwitP2SH, Network.Main).ToString();
+                        address3 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.TaprootBIP86, Network.Main).ToString();
+                        flag5 = HasBalance(address0);
+                        flag = HasBalance(address);
+                        flag1 = HasBalance(address1);
+                        flag2 = HasBalance(address2);
+                        flag3 = HasBalance(address3);
+
+                        Interlocked.Increment(ref Total);
+                        t2 = DateTime.Now;
+                        cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
+                        if (cur != 0)
+                        {
+                            speed = Total / cur;
+                            speedAD = speed * 5;
+                        }
+                        else
+                        {
+                            Thread.Sleep(1000);
+                            t2 = DateTime.Now;
+                            cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
+                            speed = Total / cur;
+                            speedAD = speed * 5;
+                        }
+                        if ((flag5 != false) || (flag != false) || (flag1 != false) || (flag2 != false) || (flag3 != false))
+                        {
+                            bool flag0 = true;
+                            byte[] pvk = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToBytes();
+                            string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
+                            hex = hex.Remove(hex.Length - 2);
+                            Console.Write("\nAddress:\n|Compress: {0} \n|Uncompress: {11} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|Mnemonic phrase: {4} \n|Path: {5} \n|PVK: {6}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, hex, Total, Wet, speed, speedAD, address0);
+                            string contents = string.Format("|Addresses: {0}  |Balance: {8}\n|{5}  |Balance: {9}\n|{6}  |Balance: {10}\n|{7}  |Balance: {11} \n|{12}  |Balance: {13} \n|Has balance: {1} \n|Mnemonic phrase: {2} \n|Private: {3} \n|PATH: {4}\n\n", address, flag0, mnemonic.ToString(), hex, DerPath.ToString(), address1, address2, address3, flag, flag1, flag2, flag3, address0, flag5);
+                            object outFileLock = Program.outFileLock;
+                            bool lockTaken = false;
+                            try
+                            {
+                                Monitor.Enter(outFileLock, ref lockTaken);
+                                File.AppendAllText("wet.txt", contents);
+                            }
+                            finally
+                            {
+                                if (lockTaken)
+                                    Monitor.Exit(outFileLock);
+                            }
+                            Interlocked.Increment(ref Wet);
+                        }
+                        else
+                        {
+                            if (Silent == false)
+                            {
+                                byte[] pvk = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToBytes();
+                                string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
+                                hex = hex.Remove(hex.Length - 2);
+                                Console.Write("\nAddress:\n|Compress: {0} \n|Uncompress: {11}\n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|Mnemonic phrase: {4} \n|Path: {5} \n|PVK: {6}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, hex, Total, Wet, speed, speedAD, address0);
                             }
                         }
                         a++;
@@ -429,6 +495,60 @@ namespace bitcoin_wallet_check_csharp
                                 Console.Write("\nAddress:{0}\n|Mnemonic phrase: {1} \n|Path: {2} \n|PVK: {3}\n Total: {4} | Found: {5} | Speed: {6} Keys/s |\n", address0, mnemonic, DerPath, hex, Total, Wet, speed);
                             }
                         }
+
+                        DerPath = PATH.Remove(PATH.Length - 1) + a + "'";
+                        //NBitcoin.KeyPath keyPath = new(DerPath);
+                        //.KeyPath keyPath = new(DerPath)
+                        //ExtKey extKey = mnemonic.DeriveExtKey().Derive(keyPath);
+                        wallet2 = new Wallet(mnemonic.ToString(), BIP39_Passphrase, PATH.Remove(PATH.Length - 1));
+                        wallet1 = wallet2.GetAccount(a);
+
+                        address0 = wallet1.Address;
+                        flag0 = HasBalance(address0);
+
+                        Interlocked.Increment(ref Total);
+                        t2 = DateTime.Now;
+                        cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
+                        if (cur != 0)
+                        {
+                            speed = Total / cur;
+                        }
+                        else
+                        {
+                            Thread.Sleep(1000);
+                            t2 = DateTime.Now;
+                            cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
+                            speed = Total / cur;
+                        }
+                        if (flag0 != false)
+                        {
+                            byte[] str = wallet2.GetPrivateKey(a);
+                            string HEX = BitConverter.ToString(str).Replace("-", string.Empty);
+                            string contents = string.Format("|Addresses: {0} \n|Has balance: {1} \n|Mnemonic phrase: {2} \n|Private: {3} \n|PATH: {4}\n\n", (object)address0, (object)flag0.ToString(), (object)mnemonic.ToString(), (object)HEX, (object)DerPath);
+                            Console.Write("\nAddress:{0}\n|Mnemonic phrase: {1} \n|Path: {2} \n|PVK: {3}\n Total: {4} | Found: {5} | Speed: {6} Keys/s |\n", address0, mnemonic, DerPath, HEX, Total, Wet, speed);
+                            object outFileLock = Program.outFileLock;
+                            bool lockTaken = false;
+                            try
+                            {
+                                Monitor.Enter(outFileLock, ref lockTaken);
+                                File.AppendAllText("wet.txt", contents);
+                            }
+                            finally
+                            {
+                                if (lockTaken)
+                                    Monitor.Exit(outFileLock);
+                            }
+                            Interlocked.Increment(ref Wet);
+                        }
+                        else
+                        {
+                            if (Silent == false)
+                            {
+                                byte[] pvk = wallet2.GetPrivateKey(a);
+                                string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
+                                Console.Write("\nAddress:{0}\n|Mnemonic phrase: {1} \n|Path: {2} \n|PVK: {3}\n Total: {4} | Found: {5} | Speed: {6} Keys/s |\n", address0, mnemonic, DerPath, hex, Total, Wet, speed);
+                            }
+                        }
                         a++;
                     }
                 }
@@ -473,6 +593,7 @@ namespace bitcoin_wallet_check_csharp
 
                         string address0 = wallet1.Address;
                         string address = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
+                        string address5 = extKey.Neuter().PubKey.Decompress().GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
                         string address1 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Segwit, Network.Main).ToString();
                         string address2 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.SegwitP2SH, Network.Main).ToString();
                         string address3 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.TaprootBIP86, Network.Main).ToString();
@@ -481,6 +602,7 @@ namespace bitcoin_wallet_check_csharp
                         bool flag1 = HasBalance(address1);
                         bool flag2 = HasBalance(address2);
                         bool flag3 = HasBalance(address3);
+                        bool flag5 = HasBalance(address5);
 
                         Interlocked.Increment(ref Total);
                         t2 = DateTime.Now;
@@ -488,7 +610,7 @@ namespace bitcoin_wallet_check_csharp
                         if (cur != 0)
                         {
                             speed = Total / cur;
-                            speedAD = speed * 5;
+                            speedAD = speed * 6;
                         }
                         else
                         {
@@ -496,9 +618,9 @@ namespace bitcoin_wallet_check_csharp
                             t2 = DateTime.Now;
                             cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
                             speed = Total / cur;
-                            speedAD = speed * 5;
+                            speedAD = speed * 6;
                         }
-                        if ((flag != false) || (flag1 != false) || (flag2 != false) || (flag3 != false) || (flag0 != false))
+                        if ((flag5 != false) || (flag != false) || (flag1 != false) || (flag2 != false) || (flag3 != false) || (flag0 != false))
                         {
                             bool FLAG = true;
                             byte[] pvk1 = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToBytes();
@@ -507,8 +629,8 @@ namespace bitcoin_wallet_check_csharp
 
                             byte[] pvk = wallet2.GetPrivateKey(a);
                             string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
-                            Console.Write("\nAddress:\n|Legacy: {0} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|ETHEREUM: {11} \n|Mnemonic phrase: {4} \n|Path BTC: {5} \n|Path ETH: {13}\n|PVK BTC: {6} \n|PVK ETH: {12}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, str, Total, Wet, speed, speedAD, address0, hex, EthPath);
-                            string contents = string.Format("|Addresses: {0}  |Balance: {8}\n|{5}  |Balance: {9}\n|{6}  |Balance: {10}\n|{7}  |Balance: {11} \n|ETH Address: {12} |Balance: {15}\n|Has balance: {1} \n|Mnemonic phrase: {2} \n|Private BTC: {3} \n|Private ETH: {13} \n|PATH BTC: {4}\n|PATH ETH: {14}\n\n", address, FLAG, mnemonic.ToString(), str, DerPath, address1, address2, address3, flag, flag1, flag2, flag3, address0, hex, EthPath, flag0);
+                            Console.Write("\nAddress:\n|Compress: {0} \n|Uncompress: {14} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|ETHEREUM: {11} \n|Mnemonic phrase: {4} \n|Path BTC: {5} \n|Path ETH: {13}\n|PVK BTC: {6} \n|PVK ETH: {12}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, str, Total, Wet, speed, speedAD, address0, hex, EthPath, address5);
+                            string contents = string.Format("|Addresses: {0}  |Balance: {8}\n{15}  |Balance: {16}\n|{5}  |Balance: {9}\n|{6}  |Balance: {10}\n|{7}  |Balance: {11} \n|ETH Address: {12} |Balance: {15}\n|Has balance: {1} \n|Mnemonic phrase: {2} \n|Private BTC: {3} \n|Private ETH: {13} \n|PATH BTC: {4}\n|PATH ETH: {14}\n\n", address, FLAG, mnemonic.ToString(), str, DerPath, address1, address2, address3, flag, flag1, flag2, flag3, address0, hex, EthPath, flag0, address5, flag5);
                             object outFileLock = Program.outFileLock;
                             bool lockTaken = false;
                             try
@@ -534,7 +656,84 @@ namespace bitcoin_wallet_check_csharp
                                 byte[] pvk = wallet2.GetPrivateKey(a);
                                 string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
 
-                                Console.Write("\nAddress:\n|Legacy: {0} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|ETHEREUM: {11} \n|Mnemonic phrase: {4} \n|Path BTC: {5} \n|Path ETH: {13}\n|PVK BTC: {6} \n|PVK ETH: {12}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, str, Total, Wet, speed, speedAD, address0, hex, EthPath);
+                                Console.Write("\nAddress:\n|Compress: {0} \n|Uncompress: {14} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|ETHEREUM: {11} \n|Mnemonic phrase: {4} \n|Path BTC: {5} \n|Path ETH: {13}\n|PVK BTC: {6} \n|PVK ETH: {12}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, str, Total, Wet, speed, speedAD, address0, hex, EthPath, address5);
+                            }
+                        }
+
+                        DerPath = PATH.Remove(PATH.Length - 1) + a + "'";
+                        EthPath = PATH1.Remove(PATH1.Length - 1) + a + "'";
+                        //string DerPath = "m/44'/0'/0'/0/0";
+                        keyPath = new(DerPath);
+                        extKey = mnemonic.DeriveExtKey(BIP39_Passphrase).Derive(keyPath);
+                        wallet2 = new Wallet(mnemonic.ToString(), BIP39_Passphrase, PATH1.Remove(PATH1.Length - 1));
+                        wallet1 = wallet2.GetAccount(a);
+
+                        address0 = wallet1.Address;
+                        address = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
+                        address5 = extKey.Neuter().PubKey.Decompress().GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
+                        address1 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.Segwit, Network.Main).ToString();
+                        address2 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.SegwitP2SH, Network.Main).ToString();
+                        address3 = extKey.Neuter().PubKey.GetAddress(ScriptPubKeyType.TaprootBIP86, Network.Main).ToString();
+                        flag0 = HasBalance(address0);
+                        flag = HasBalance(address);
+                        flag1 = HasBalance(address1);
+                        flag2 = HasBalance(address2);
+                        flag3 = HasBalance(address3);
+                        flag5 = HasBalance(address5);
+
+                        Interlocked.Increment(ref Total);
+                        t2 = DateTime.Now;
+                        cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
+                        if (cur != 0)
+                        {
+                            speed = Total / cur;
+                            speedAD = speed * 6;
+                        }
+                        else
+                        {
+                            Thread.Sleep(1000);
+                            t2 = DateTime.Now;
+                            cur = ((t2.Ticks) - (t1.Ticks)) / 10000000;
+                            speed = Total / cur;
+                            speedAD = speed * 6;
+                        }
+                        if ((flag5 != false) || (flag != false) || (flag1 != false) || (flag2 != false) || (flag3 != false) || (flag0 != false))
+                        {
+                            bool FLAG = true;
+                            byte[] pvk1 = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToBytes();
+                            string str = BitConverter.ToString(pvk1).Replace("-", string.Empty);
+                            str = str.Remove(str.Length - 2);
+
+                            byte[] pvk = wallet2.GetPrivateKey(a);
+                            string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
+                            Console.Write("\nAddress:\n|Compress: {0} \n|Uncompress: {14} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|ETHEREUM: {11} \n|Mnemonic phrase: {4} \n|Path BTC: {5} \n|Path ETH: {13}\n|PVK BTC: {6} \n|PVK ETH: {12}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, str, Total, Wet, speed, speedAD, address0, hex, EthPath, address5);
+                            string contents = string.Format("|Addresses: {0}  |Balance: {8}\n{15}  |Balance: {16}\n|{5}  |Balance: {9}\n|{6}  |Balance: {10}\n|{7}  |Balance: {11} \n|ETH Address: {12} |Balance: {15}\n|Has balance: {1} \n|Mnemonic phrase: {2} \n|Private BTC: {3} \n|Private ETH: {13} \n|PATH BTC: {4}\n|PATH ETH: {14}\n\n", address, FLAG, mnemonic.ToString(), str, DerPath, address1, address2, address3, flag, flag1, flag2, flag3, address0, hex, EthPath, flag0, address5, flag5);
+                            object outFileLock = Program.outFileLock;
+                            bool lockTaken = false;
+                            try
+                            {
+                                Monitor.Enter(outFileLock, ref lockTaken);
+                                File.AppendAllText("wet.txt", contents);
+                            }
+                            finally
+                            {
+                                if (lockTaken)
+                                    Monitor.Exit(outFileLock);
+                            }
+                            Interlocked.Increment(ref Wet);
+                        }
+                        else
+                        {
+                            if (Silent == false)
+                            {
+                                byte[] pvk1 = extKey.PrivateKey.GetBitcoinSecret(Network.Main).ToBytes();
+                                string str = BitConverter.ToString(pvk1).Replace("-", string.Empty);
+                                str = str.Remove(str.Length - 2);
+
+                                byte[] pvk = wallet2.GetPrivateKey(a);
+                                string hex = BitConverter.ToString(pvk).Replace("-", string.Empty);
+
+                                Console.Write("\nAddress:\n|Compress: {0} \n|Uncompress: {14} \n|Segwit: {1} \n|P2SH: {2} \n|BIP86: {3} \n|ETHEREUM: {11} \n|Mnemonic phrase: {4} \n|Path BTC: {5} \n|Path ETH: {13}\n|PVK BTC: {6} \n|PVK ETH: {12}\n Total: {7} | Found: {8} | Speed: {9} Keys/s | Speed: {10} Addresses/s |\n", address, address1, address2, address3, mnemonic, keyPath, str, Total, Wet, speed, speedAD, address0, hex, EthPath, address5);
                             }
                         }
                         a++;
