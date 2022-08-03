@@ -1,0 +1,13 @@
+Генерация BIP39 mnemonic из прозвольной строки, с возможностью указания количества seed слов. Есть ссылка на исходники JScript
+https://brain2bip.com/
+
+По заданной mnemonic вычисляет адреса кошельков около 100 ввалют. Вычисляет Derived Addresses. Есть ссылка на исходники JScript
+https://iancoleman.io/bip39/
+
+Patent US5892470. Предшественник BIP39. Изпользовался в ранних версиях Electrum
+https://patents.google.com/patent/US5892470
+
+bip 32/44
+https://learnmeabitcoin.com/technical/hd-wallets
+https://habr.com/ru/company/distributedlab/blog/413627/
+https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch05.asciidoc

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generator_Mnemonics", "Generator_Mnemonics.csproj", "{17951117-24A3-4C50-A7CB-E9C1E4A062F2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cryptography.ECDSA", "..\Cryptography.ECDSA\Sources\Cryptography.ECDSA\Cryptography.ECDSA.csproj", "{C920475C-93C5-4BF1-AF2F-A4FDF97E18B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17951117-24A3-4C50-A7CB-E9C1E4A062F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17951117-24A3-4C50-A7CB-E9C1E4A062F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17951117-24A3-4C50-A7CB-E9C1E4A062F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17951117-24A3-4C50-A7CB-E9C1E4A062F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C920475C-93C5-4BF1-AF2F-A4FDF97E18B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C920475C-93C5-4BF1-AF2F-A4FDF97E18B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C920475C-93C5-4BF1-AF2F-A4FDF97E18B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C920475C-93C5-4BF1-AF2F-A4FDF97E18B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47772DF1-A5ED-4142-A5BA-9B38E2C3B7EC}
+	EndGlobalSection
+EndGlobal

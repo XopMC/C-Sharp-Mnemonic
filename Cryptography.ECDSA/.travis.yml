@@ -1,0 +1,8 @@
+language: csharp
+solution: ./Sources/Cryptography.ECDSA.sln
+before_install:
+  - sudo apt-get install nunit-console
+before_script:
+  - nuget restore ./Sources/Cryptography.ECDSA.sln
+after_script:
+  - nunit-console ./Sources/Cryptography.ECDSA.Tests/bin/Release/Cryptography.ECDSA.Tests.dll
