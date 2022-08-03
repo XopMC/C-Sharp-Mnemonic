@@ -23,8 +23,8 @@ Description of launch arguments:
 `-i path to file` -- Path to file with database  
 `-hard` -- To operate on hardened addresses (adds a ' to derivation paths)  
 `-m number` -- Mode 1 - BTC, 2 - ETH, 3 - BTC (HASH160), 4 - Public keys, 5 - Private keys (generator for brainflayer)  
-`-n number` -- Number of keys for incremental search (+- value to the keys obtained from the mnemonic) 
-`-k number` -- Step for incremental search (what number will be added to the private key in incremental search mode) 
+`-n number` -- Number of keys for incremental search (+- value to the keys obtained from the mnemonic)  
+`-k number` -- Step for incremental search (what number will be added to the private key in incremental search mode)  
 `-t number` -- Number of threads  
 `-P path` -- Derivation paths if not specified 44'/0'/0'/0/0 - for BTC, 44'/60'/0'/0/0 - for ETH  
 `-PLUS` Use a set of built-in most popular derivation paths (there are many)  
