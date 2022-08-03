@@ -5,7 +5,7 @@
 Mnemonic Bruteforce C#  
 
 # Eng  
-## 08/04/2022 UPDATE - Ver. 6.0.0 
+## 04/08/2022 UPDATE - Ver. 6.0.0 
 ✅ Completely rewritten all the code, redone the mnemonic logic  
 ✅ More than 2x speed increase (x100 in some modes)  
 ✅ Implemented control via arguments (`C#-Mnemonic.exe -h` to view help)  
