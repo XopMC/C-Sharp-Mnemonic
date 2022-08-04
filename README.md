@@ -135,14 +135,14 @@ English, ChineseTraditional, ChineseSimplified, Korean , Japanese, Italian, Fren
 
 # В папке [GeneratorMnemonics/bin/Release](https://github.com/XopMC/C-Sharp-Mnemonic/tree/main/GeneratorMnemonics/bin/Release) находятся сборки для самых популярных ОС:  
 1)WINDOWS:  
-        1. x64  
-        2. x86  
-        3. ARM  
-        4. ARM64  
-2)LINUX: 
-        1. x64  
-        2. ARM  
-        3. ARM64 
+        1. x64    
+        2. x86    
+        3. ARM    
+        4. ARM64    
+2)LINUX:  
+        1. x64   
+        2. ARM   
+        3. ARM64  
 3)OSX-x64  
 
 
