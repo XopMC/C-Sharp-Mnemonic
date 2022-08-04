@@ -10,7 +10,7 @@ Mnemonic Bruteforce C#
 ✅ More than 2x speed increase (x100 in some modes)  
 ✅ Implemented control via arguments (`C#-Mnemonic.exe -h` to view help)  
 ✅ Added several modes (BTC, ETH, BTC(hash160), Public Keys, Private keys (for brainflayer))  
-✅ Added the ability to use multiple derivation paths (`-P path -P path2 -P path3` and so on)  
+✅ Added the ability to use multiple derivation paths (`-P "path" -P "path2" -P "path3"` and so on)  
 ✅ Implemented the possibility of incremental search (+- value to the keys obtained from the mnemonic)  
 
 I plan to add:  
@@ -26,7 +26,7 @@ Description of launch arguments:
 `-n number` -- Number of keys for incremental search (+- value to the keys obtained from the mnemonic)  
 `-k number` -- Step for incremental search (what number will be added to the private key in incremental search mode)  
 `-t number` -- Number of threads  
-`-P path` -- Derivation paths if not specified 44'/0'/0'/0/0 - for BTC, 44'/60'/0'/0/0 - for ETH  
+`-P "path"` -- Derivation paths if not specified 44'/0'/0'/0/0 - for BTC, 44'/60'/0'/0/0 - for ETH  
 `-PLUS` Use a set of built-in most popular derivation paths (there are many)  
 `-w number of words` -- 12,15,18,21,24 - Number of words for the mnemonic (Default 12)  
 `-lang language` (EN, CT, CS, KO, JA, IT, FR, SP) | Languages for mnemonics -  
@@ -85,7 +85,7 @@ Donation: bc1qlwcaxwnp2ulndlppdc0wvkdz7ly2npfuz6ny0a - BTC  0xDE85c1Ef7874A1D945
 ✅ Увеличение скорости более чем в 2 раза (x100 в некоторых режимах)  
 ✅ Реализовано управление через аргументы (`C#-Mnemonic.exe -h` для просмотра справки)  
 ✅ Добавлены несколько режимов (BTC, ETH, BTC(hash160), Public Keys, Private keys (для brainflayer))  
-✅ Добавлена возможность использования нескольких путей деривации (`-P путь -P путь2 -P путь3` и тд)  
+✅ Добавлена возможность использования нескольких путей деривации (`-P "путь" -P "путь2" -P "путь3"` и тд)  
 ✅ Реализована возможность инкрементального поиска (+- значение к полученным из мнемоники ключам)  
 
 Планирую добавить:   
@@ -101,7 +101,7 @@ Donation: bc1qlwcaxwnp2ulndlppdc0wvkdz7ly2npfuz6ny0a - BTC  0xDE85c1Ef7874A1D945
 `-n число` -- Кол-во ключей для инкрементального поиска (+- значение к полученным из мнемоники ключам)  
 `-k число` -- Шаг для инкрементального поиска (какое число будет прибавляться к приватному ключу в режиме инкрементального поиска)  
 `-t число` -- Количество потоков  
-`-P путь` -- Пути деривации, если не указан будет 44'/0'/0'/0/0 - для BTC, 44'/60'/0'/0/0 - для ETH  
+`-P "путь"` -- Пути деривации, если не указан будет 44'/0'/0'/0/0 - для BTC, 44'/60'/0'/0/0 - для ETH  
 `-PLUS` Использовать набор вшитых самых популярных путей деривации (их много)  
 `-w кол-во слов` -- 12,15,18,21,24 - Количество слов для мнемоники (По стандарту 12)  
 `-lang язык` (EN, CT, CS, KO, JA, IT, FR, SP)  | Языки для мнемоники -  
