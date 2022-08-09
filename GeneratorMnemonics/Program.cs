@@ -1067,7 +1067,7 @@ namespace Generator_Mnemonics
 
                                 if ((flag != false) || (flag0 != false) || (flag1 != false) || (flag2 != false))
                                 {
-                                    Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\n0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                    Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\n0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nAddresses: \n{address_compressed}  Balance: {flag}  \n{address_uncompressed}  Balance: {flag0}  \n{address_segwit}  :  Balance: {flag1} \n0x{eth_adr}  :  Balance: {flag2} \nMnemonic phrase: {seed} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)} \nEntropy: {BytesToHexString(seedBytes)} \nDerivation PATH: {DER_PATH}");
                                     object outFileLock = Program.outFileLock;
                                     bool lockTaken = false;
@@ -1093,7 +1093,7 @@ namespace Generator_Mnemonics
                                         cur = Math.Round(cur);
                                         speed = Total / (Elapsed_MS / Constant);
                                         speed = Math.Round(speed);
-                                        Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\n0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                        Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\n0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
 
                                     }
                                 }
@@ -1122,7 +1122,7 @@ namespace Generator_Mnemonics
 
                                 if ((flag != false) || (flag0 != false) || (flag1 != false) || (flag2 != false))
                                 {
-                                    Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\n0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                    Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\n0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nAddresses: \n{address_compressed}  Balance: {flag}  \n{address_uncompressed}  Balance: {flag0}  \n{address_segwit}  :  Balance: {flag1} \n0x{eth_adr}  :  Balance: {flag2} \nMnemonic phrase: {seed} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)} \nEntropy: {BytesToHexString(seedBytes)} \nDerivation PATH: {DER_PATH}");
                                     object outFileLock = Program.outFileLock;
                                     bool lockTaken = false;
@@ -1148,7 +1148,7 @@ namespace Generator_Mnemonics
                                         cur = Math.Round(cur);
                                         speed = Total / (Elapsed_MS / Constant);
                                         speed = Math.Round(speed);
-                                        Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\n0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                        Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\n0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
 
                                     }
                                 }
@@ -1401,7 +1401,7 @@ namespace Generator_Mnemonics
 
                                 if ((flag != false) || (flag0 != false) || (flag1 != false))
                                 {
-                                    Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                    Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nAddresses: \n{address_compressed}  Balance: {flag}  \n{address_uncompressed}  Balance: {flag0}  \n{address_segwit}  :  Balance: {flag1} \nMnemonic phrase: {seed} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)} \nEntropy: {BytesToHexString(seedBytes)}  \nDerivation PATH: {DER_PATH}");
                                     object outFileLock = Program.outFileLock;
                                     bool lockTaken = false;
@@ -1427,7 +1427,7 @@ namespace Generator_Mnemonics
                                         cur = Math.Round(cur);
                                         speed = Total / (Elapsed_MS / Constant);
                                         speed = Math.Round(speed);
-                                        Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                        Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
 
                                     }
                                 }
@@ -1460,7 +1460,7 @@ namespace Generator_Mnemonics
 
                                 if ((flag != false) || (flag0 != false) || (flag1 != false))
                                 {
-                                    Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                    Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nAddresses: \n{address_compressed}  Balance: {flag}  \n{address_uncompressed}  Balance: {flag0}  \n{address_segwit}  :  Balance: {flag1} \nMnemonic phrase: {seed} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)}  \nEntropy: {BytesToHexString(seedBytes)} \nDerivation PATH: {DER_PATH}");
                                     object outFileLock = Program.outFileLock;
                                     bool lockTaken = false;
@@ -1486,7 +1486,7 @@ namespace Generator_Mnemonics
                                         cur = Math.Round(cur);
                                         speed = Total / (Elapsed_MS / Constant);
                                         speed = Math.Round(speed);
-                                        Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                        Console.WriteLine(address_compressed + "\n" + address_uncompressed + "\n" + address_segwit + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
 
                                     }
                                 }
@@ -1728,7 +1728,7 @@ namespace Generator_Mnemonics
 
                                 if ((flag != false) || (flag0 != false))
                                 {
-                                    Console.WriteLine(eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                    Console.WriteLine(eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nAddress: 0x{eth_adr} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)}  \nEntropy: {BytesToHexString(seedBytes)}  \nMnemonic phrase: {seed} \n Derivation PATH: {DER_PATH}");
                                     object outFileLock = Program.outFileLock;
                                     bool lockTaken = false;
@@ -1754,7 +1754,7 @@ namespace Generator_Mnemonics
                                         cur = Math.Round(cur);
                                         speed = Total / (Elapsed_MS / Constant);
                                         speed = Math.Round(speed);
-                                        Console.WriteLine("0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                        Console.WriteLine("0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
 
                                     }
                                 }
@@ -1771,7 +1771,7 @@ namespace Generator_Mnemonics
 
                                 if ((flag != false) || (flag0 != false))
                                 {
-                                    Console.WriteLine(eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                    Console.WriteLine(eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nAddress: 0x{eth_adr} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)}  \nEntropy: {BytesToHexString(seedBytes)}  \nMnemonic phrase: {seed} \n Derivation PATH: {DER_PATH}");
                                     object outFileLock = Program.outFileLock;
                                     bool lockTaken = false;
@@ -1797,7 +1797,7 @@ namespace Generator_Mnemonics
                                         cur = Math.Round(cur);
                                         speed = Total / (Elapsed_MS / Constant);
                                         speed = Math.Round(speed);
-                                        Console.WriteLine("0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                        Console.WriteLine("0x" + eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
 
                                     }
                                 }
@@ -2022,7 +2022,7 @@ namespace Generator_Mnemonics
                                 bool flag1 = HasBalance(hash_uncompressed);
                                 if ((flag != false) || (flag1 != false))
                                 {
-                                    Console.WriteLine(hash_compressed + "\n" + hash_uncompressed + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                    Console.WriteLine(hash_compressed + "\n" + hash_uncompressed + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nHashes: \n{hash_compressed}  Balance: {flag}  \n{hash_uncompressed} Balance: {flag1} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)}  \nEntropy: {BytesToHexString(seedBytes)}   \nMnemonic phrase: {seed}  \n Derivation PATH: {DER_PATH}");
                                     object outFileLock = Program.outFileLock;
                                     bool lockTaken = false;
@@ -2048,7 +2048,7 @@ namespace Generator_Mnemonics
                                         cur = Math.Round(cur);
                                         speed = Total / (Elapsed_MS / Constant);
                                         speed = Math.Round(speed);
-                                        Console.WriteLine(hash_compressed + "\n" + hash_uncompressed + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                        Console.WriteLine(hash_compressed + "\n" + hash_uncompressed + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
 
                                     }
                                 }
@@ -2065,7 +2065,7 @@ namespace Generator_Mnemonics
                                 flag1 = HasBalance(hash_uncompressed);
                                 if ((flag != false) || (flag1 != false))
                                 {
-                                    Console.WriteLine(hash_compressed + "\n" + hash_uncompressed + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                    Console.WriteLine(hash_compressed + "\n" + hash_uncompressed + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nHashes: \n{hash_compressed}  Balance: {flag}  \n{hash_uncompressed} Balance: {flag1} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)}  \nEntropy: {BytesToHexString(seedBytes)}   \nMnemonic phrase: {seed}  \n Derivation PATH: {DER_PATH}");
                                     object outFileLock = Program.outFileLock;
                                     bool lockTaken = false;
@@ -2091,7 +2091,7 @@ namespace Generator_Mnemonics
                                         cur = Math.Round(cur);
                                         speed = Total / (Elapsed_MS / Constant);
                                         speed = Math.Round(speed);
-                                        Console.WriteLine(hash_compressed + "\n" + hash_uncompressed + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                        Console.WriteLine(hash_compressed + "\n" + hash_uncompressed + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
 
                                     }
                                 }
@@ -2314,7 +2314,7 @@ namespace Generator_Mnemonics
                                 Interlocked.Increment(ref Total);
                                 if ((flag != false) || (flag1 != false))
                                 {
-                                    Console.WriteLine(BytesToHexString(Public_key_compressed) + "\n" + BytesToHexString(Public_key_uncompressed) + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                    Console.WriteLine(BytesToHexString(Public_key_compressed) + "\n" + BytesToHexString(Public_key_uncompressed) + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nPublic Keys: \n{BytesToHexString(Public_key_compressed)}  Balance: {flag}  \n{BytesToHexString(Public_key_uncompressed)} Balance: {flag1} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)} \nEntropy: {BytesToHexString(seedBytes)}   \nMnemonic phrase: {seed} \nDerivation PATH: {DER_PATH}");
                                     object outFileLock = Program.outFileLock;
                                     bool lockTaken = false;
@@ -2340,7 +2340,7 @@ namespace Generator_Mnemonics
                                         cur = Math.Round(cur);
                                         speed = Total / (Elapsed_MS / Constant);
                                         speed = Math.Round(speed);
-                                        Console.WriteLine(BytesToHexString(Public_key_compressed) + "\n" + BytesToHexString(Public_key_uncompressed) + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                        Console.WriteLine(BytesToHexString(Public_key_compressed) + "\n" + BytesToHexString(Public_key_uncompressed) + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
 
                                     }
                                 }
@@ -2355,7 +2355,7 @@ namespace Generator_Mnemonics
                                 Interlocked.Increment(ref Total);
                                 if ((flag != false) || (flag1 != false))
                                 {
-                                    Console.WriteLine(BytesToHexString(Public_key_compressed) + "\n" + BytesToHexString(Public_key_uncompressed) + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                    Console.WriteLine(BytesToHexString(Public_key_compressed) + "\n" + BytesToHexString(Public_key_uncompressed) + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nPublic Keys: \n{BytesToHexString(Public_key_compressed)}  Balance: {flag}  \n{BytesToHexString(Public_key_uncompressed)} Balance: {flag1} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)} \nEntropy: {BytesToHexString(seedBytes)}   \nMnemonic phrase: {seed} \nDerivation PATH: {DER_PATH}");
                                     object outFileLock = Program.outFileLock;
                                     bool lockTaken = false;
@@ -2381,7 +2381,7 @@ namespace Generator_Mnemonics
                                         cur = Math.Round(cur);
                                         speed = Total / (Elapsed_MS / Constant);
                                         speed = Math.Round(speed);
-                                        Console.WriteLine(BytesToHexString(Public_key_compressed) + "\n" + BytesToHexString(Public_key_uncompressed) + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + n.ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
+                                        Console.WriteLine(BytesToHexString(Public_key_compressed) + "\n" + BytesToHexString(Public_key_uncompressed) + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
 
                                     }
                                 }
@@ -2863,7 +2863,7 @@ namespace Generator_Mnemonics
                     }
                     key = Cryptography.ECDSA.Secp256K1Manager.GetPublicKey(masterPrivateKey, true);
                 }
-                d = BytesToHexString(key) + n.ToString("X8");
+                d = BytesToHexString(key) + (n*Step).ToString("X8");
                 D = StringToByteArray(d);
                 while (true)
                 {
@@ -2888,7 +2888,7 @@ namespace Generator_Mnemonics
                         break;
                     }
                     byte[] b2 = ASCIIEncoding.ASCII.GetBytes("\x01");
-                    var dd = BytesToHexString(b2) + BytesToHexString(ChainCode) + n.ToString("X8");
+                    var dd = BytesToHexString(b2) + BytesToHexString(ChainCode) + (n*Step).ToString("X8");
                     D = StringToByteArray(dd);
 
                 }
