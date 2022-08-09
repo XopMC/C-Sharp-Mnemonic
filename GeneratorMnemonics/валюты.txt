@@ -1,0 +1,40 @@
+//Legacy address: | SegWit base58:
+//00 — Bitcoin | 05 — Bitcoin     1
+// 00 — Bitcoin Cash | 05 —  Bitcoin Cash    6  m/44'/145'/0'/0
+// 00 — Bitcoin Diamond | 05 —  Bitcoin Diamond    7  
+// 00 — Bitcoin SV | 05 — Bitcoin SV    8
+// 00 — ILCoin | 05 — ILCoin    9
+// 00 — Tether | 05 — Tether    10
+// 1C — CryptoVerificationCoin | ---11
+// 1C — Litecoin Cash | 32 — Litecoin Cash     12
+// 1CB8 — Zcash | 1CBD — Zcash     13
+// 1E — DigiByte | 3F — DigiByte     14
+// 1E — Dogecoin | 16 — Dogecoin     15
+// 1E — PIVX | ---16
+// 1E — Verge | ---17
+// 2089 — Horizen | ---18
+// 21 — Einsteinium | 37 — Einsteinium      19
+// 24 — Groestlcoin | 05 - Groestlcoin      20
+// 26 — Bitcoin Gold | 17 — Bitcoin Gold       21
+// 30 — Litecoin | 32 — Litecoin       22
+// 32 — MonaCoin | ---23
+// 33 — ImageCoin | ---24
+// 35 — NavCoin | ---25
+// 35 — Neblio | ---26
+// 37 — Axe | 10 — Axe     27
+// 37 — Peercoin | 75 — Peercoin    28
+// 38 — Particl | 3C — Particl    29
+// 3A — Qtum | 32 — Qtum    30
+// 3C — Komodo | ---31
+// 3C — Ravencoin | ---32
+// 3D — Reddcoin | ---33
+// 3F — SafeInsure | ---34
+// 3F — SmartCash | 12 — SmartCash   35
+// 3F — Stratis | 7D — Stratis    36
+// 3F — Syscoin | ---37
+// 47 — Vertcoin | ---38
+// 47 — Viacoin | 21 — Viacoin    39
+// 4B — Beetle Coin | 40
+// 4C — Dash | 10 — Dash    41
+// 4C — Xenios | ---42
+// 52 — Zcoin | 07 — Zcoin     43

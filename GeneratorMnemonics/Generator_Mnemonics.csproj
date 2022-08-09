@@ -8,10 +8,15 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
     <Product>C#-Mnemonic</Product>
-    <Description>C#-Mnemonic ver.6.0.0 pre-release</Description>
+    <Description>C#-Mnemonic ver.7.0.1 pre-release</Description>
     <PackageProjectUrl>t.me/brythbit</PackageProjectUrl>
-    <AssemblyVersion>6.0.0</AssemblyVersion>
+    <AssemblyVersion>7.0.1</AssemblyVersion>
     <AssemblyName>C#-Mnemonic</AssemblyName>
+    <Title>C#-Mnemonic</Title>
+    <Version>7.0.1</Version>
+    <Copyright>t.me/brythbit by @XopMC</Copyright>
+    <PackageIcon>icon.ico</PackageIcon>
+    <RepositoryUrl>https://github.com/XopMC/C-Sharp-Mnemonic</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -62,6 +67,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cryptography.ECDSA\Sources\Cryptography.ECDSA\Cryptography.ECDSA.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="icon.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
