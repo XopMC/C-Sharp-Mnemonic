@@ -2863,7 +2863,7 @@ namespace Generator_Mnemonics
                     }
                     key = Cryptography.ECDSA.Secp256K1Manager.GetPublicKey(masterPrivateKey, true);
                 }
-                d = BytesToHexString(key) + (n*Step).ToString("X8");
+                d = BytesToHexString(key) + n.ToString("X8");
                 D = StringToByteArray(d);
                 while (true)
                 {
@@ -2888,7 +2888,7 @@ namespace Generator_Mnemonics
                         break;
                     }
                     byte[] b2 = ASCIIEncoding.ASCII.GetBytes("\x01");
-                    var dd = BytesToHexString(b2) + BytesToHexString(ChainCode) + (n*Step).ToString("X8");
+                    var dd = BytesToHexString(b2) + BytesToHexString(ChainCode) + n.ToString("X8");
                     D = StringToByteArray(dd);
 
                 }
