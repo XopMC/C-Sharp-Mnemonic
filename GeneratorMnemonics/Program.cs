@@ -256,7 +256,7 @@ namespace Generator_Mnemonics
                             try
                             {
                                 EntropyLength = "X" + args[i + 1].Length;
-                                Entropy = BigInteger.Parse("0" + args[i + 1], System.Globalization.NumberStyles.AllowHexSpecifier);
+                                Entropy = BigInteger.Parse(args[i + 1], System.Globalization.NumberStyles.AllowHexSpecifier);
                                 IncrementalEntropy = true;
                             }
                             catch
@@ -963,6 +963,7 @@ namespace Generator_Mnemonics
                 byte[] seedBytes;
                 if (IncrementalEntropy)
                 {
+
                     seedBytes = StringToByteArray(Entropy.ToString(EntropyLength));
                     Entropy = Entropy + EntropyStep;
                 }
@@ -1293,7 +1294,7 @@ namespace Generator_Mnemonics
                 byte[] seedBytes;
                 if (IncrementalEntropy)
                 {
-                    //Console.WriteLine("Entropy: " + Entropy.ToString("X8"));
+                    //Console.WriteLine("Entropy: " + Entropy.ToString(EntropyLength));
                     seedBytes = StringToByteArray(Entropy.ToString(EntropyLength));
                     
                     Entropy = Entropy + EntropyStep;
