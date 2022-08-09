@@ -168,6 +168,10 @@ Ubuntu 22.04: `wget https://packages.microsoft.com/config/ubuntu/22.04/packages-
 `sudo apt-get install -y apt-transport-https`  
 `sudo apt-get update`  
 `sudo apt-get install -y aspnetcore-runtime-6.0`  
+OSX(macOS):  
+x64: качаем dotnet - https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.8-macos-x64-installer   
+arm64 (процессоры М1): качаем dotnet - https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.8-macos-arm64-installer  
+ЕСЛИ ВОЗНИКАЕТ ОШИБКА ("Operation not permitted"), читаем статью тут - https://github.com/XopMC/C-Sharp-Mnemonic/blob/main/ERROR_OSX.md  
 
 Запускать программу через CMD!  
 
@@ -222,12 +226,34 @@ Ubuntu 22.04: `wget https://packages.microsoft.com/config/ubuntu/22.04/packages-
 ПАРАМЕТР `-step`:  
 На скриншоте выше, видно что к текущей энтропии прибавляется единица.  
 Данный параметр, позволяет указать, какое число будет прибавляться к энтропии.  
-Соответственно, если я укажу программе `-entropy 28d73a47efe9c88b1605da9bbf187115 -step 2` -- она будет "прыгать" через 1 слово...  
+Соответственно, если я укажу программе `-entropy 28d73a47efe9c88b1605da9bbf187115 -step 2` -- она будет "прыгать" через 1 слово...   
 ![image](https://user-images.githubusercontent.com/89750173/183736662-43ac7cb5-7cf6-4d13-a3a1-c430f9627249.png)  
 (Важно учесть, что в параметре `-step` - необходимо указывать десятичное число.  
 Например, если вы хотите добавлять к энтропии число `f` - вам нужно указать `-step 15`...   
 # ПРОГРАММА РАЗ В МИНУТУ СОХРАНАЕТ ЗНАЧЕНИЕ ПОСЛЕДНЕЙ ПРОЙДЁННОЙ ЭНТРОПИИ В ФАЙЛ `SAVED_ENTROPY.txt`!!!  
 
+## Режимы `-m 5` и `-m 100`:  
+## В режиме `-m 5` программа просто выводит на экран сгенерированные приватные ключи, их можно либо собирать в файл, либо передавать в brainlfayer.  
+![image](https://user-images.githubusercontent.com/89750173/183741610-4717bc4d-009c-419f-ae65-373d862a05ed.png)   
+
+ТАК-ЖЕ В ДАННОМ РЕЖИМЕ РАБОТАЮТ ПАРАМЕТРЫ `-n -k` и `-entropy -step`  
+Пример: `C#-Mnemonic.exe -m 5 -n 1000 -k 1`  
+![image](https://user-images.githubusercontent.com/89750173/183742150-f2e8a49d-4a3d-4fd5-aa06-5588f7fc0049.png)  
+
+ПРИМЕРЫ:  
+Сохранение в файл PrivateKeys.txt: `C#-Mnemonic.exe -m 5 -n 1000 -k 1 >> PrivateKeys.txt`   
+Передача в brainflayer: `C#-Mnemonic.exe -m 5 -n 1000 -k 1 | brainflayer.exe -v -t priv -x ....`   
+
+## В режиме `-m 100` программа просто генерирует валидную мнемонику, её можно либо собирать в файл, либо передавать в brainlfayer.  
+![image](https://user-images.githubusercontent.com/89750173/183743041-f157d211-580e-479b-a2d0-6f0023cffc6c.png)  
+
+Так-же в данной режиме рабоет параметр `-entropy`:  
+Пример: `C#-Mnemonic.exe -m 100 -entropy 00000000` - генерирует ВАЛИДНУЮ мнемонику по порядку  
+![image](https://user-images.githubusercontent.com/89750173/183743346-352f3ae7-5ee0-40f7-b5af-5ccc5daf1c9e.png)  
+(Параметры `-n` и `-k` в данном режиме не работают, так как нет приватных ключей)  
+ПРИМЕРЫ:  
+Сохранение в файл Mnemonic.txt: `C#-Mnemonic.exe -m 100 -w 12 >> Mnemonic.txt`   
+Передача в brainflayer: `C#-Mnemonic.exe -m 100 -w 12 | brainflayer.exe -v ....`   
 
 # Так-же оставил возможность запустить программу, просто зажав мышкой базу адресов и перенеся её на программу  
 В таком случае, программа запускается в режиме BTC+ETH, с минимальными настройками.  
