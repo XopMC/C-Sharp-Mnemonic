@@ -171,7 +171,7 @@ Ubuntu 22.04: `wget https://packages.microsoft.com/config/ubuntu/22.04/packages-
 OSX(macOS):  
 x64: качаем dotnet - https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.8-macos-x64-installer   
 arm64 (процессоры М1): качаем dotnet - https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.8-macos-arm64-installer  
-ЕСЛИ ВОЗНИКАЕТ ОШИБКА ("Operation not permitted"), читаем статью тут - https://github.com/XopMC/C-Sharp-Mnemonic/blob/main/ERROR_OSX.md  
+## ЕСЛИ ВОЗНИКАЕТ ОШИБКА ("Operation not permitted"), читаем статью тут - https://github.com/XopMC/C-Sharp-Mnemonic/blob/main/ERROR_OSX.md  
 
 Запускать программу через CMD!  
 
