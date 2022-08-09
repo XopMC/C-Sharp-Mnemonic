@@ -130,7 +130,8 @@ EXAMPLE:
 `-entropy 000000000000000000000000` - 24 HEX (96 bit) characters, 9 words from words `abandon abandon abandon abandon abandon abandon abandon abandon`  
 `-entropy 0000000000000000000000000000000` - 32 HEX (128 bit) characters, 12 words each, from the words `abandon abandon abandon abandon abandon abandon abandon abandon abandon about`  
 ........  and so on  
-`-entropy 00000000000000000000000000000000000000000000000000000000000000` - 64 HEX (256 bits) characters, 24-word search, from the words  
+`-entropy 00000000000000000000000000000000000000000000000000000000000000` - 64 HEX (256 bits) characters, 24-word search, from the words  `abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon art`    
+
 
 THE COMMANDS ABOVE ARE FOR EXAMPLE ONLY!!!  
 In general, thanks to this parameter, you can iterate in order starting from any combination.  
