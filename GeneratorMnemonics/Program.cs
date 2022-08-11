@@ -51,7 +51,7 @@ namespace Generator_Mnemonics
         private static readonly BigInteger order = BigInteger.Parse("115792089237316195423570985008687907852837564279074904382605163141518161494337");
         private static long Total, Found = 0;
         private static BigInteger IncrementalSearch, Entropy = 0;
-        private static BigInteger Step, EntropyStep = 1;
+        private static BigInteger Step = 1, EntropyStep = 1;
         private static bool Silent = true;
         private static int processorCount = Environment.ProcessorCount;
         private static int num = 1;
@@ -789,7 +789,6 @@ namespace Generator_Mnemonics
 
                 }
 
-
                 if ((mode != 5) && (mode != 100))
                 {
                     Console.WriteLine("Loading addresses from {0}  | Загружаю адреса из {0} \n", filePath);
@@ -1016,33 +1015,33 @@ namespace Generator_Mnemonics
                         if (IncrementalSearch != 0)
                         {
                             long n = 0;
-                            BigInteger PrivateDEC = BigInteger.Parse("0" + BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
+                            BigInteger PrivateDEC = BigInteger.Parse(BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
                             while (n <= IncrementalSearch)
                             {
                                 //Считаем Приватник + N число
                                 var PrivateDEC1 = PrivateDEC - (n * Step);
                                 var PrivateDEC0 = PrivateDEC + (n * Step);
                                 //Console.WriteLine(PrivateDEC.ToString("X32"));
-                                var PrivateHEX1 = PrivateDEC1.ToString("X32");
-                                var PrivateHEX0 = PrivateDEC0.ToString("X32");
+                                var PrivateHEX1 = PrivateDEC1.ToString("X64");
+                                var PrivateHEX0 = PrivateDEC0.ToString("X64");
 
                                 //Console.WriteLine(PrivateDEC0.ToString("X32"));
                                 //Console.WriteLine(PrivateDEC1.ToString("X32"));
-                                range = PrivateDEC.ToString("X32").Length;
-                                if (range < 64)
-                                {
-                                    while (range < 64)
-                                    {
-                                        PrivateHEX0 = '0' + PrivateHEX0;
-                                        PrivateHEX1 = '0' + PrivateHEX1;
-                                        range++;
-                                    }
-                                }
-                                else if (range > 64)
-                                {
-                                    PrivateHEX0 = PrivateHEX0[^64..];
-                                    PrivateHEX1 = PrivateHEX1[^64..];
-                                }
+                                //range = PrivateDEC.ToString("X32").Length;
+                                //if (range < 64)
+                                //{
+                                //    while (range < 64)
+                                //    {
+                                //        PrivateHEX0 = '0' + PrivateHEX0;
+                                //        PrivateHEX1 = '0' + PrivateHEX1;
+                                //        range++;
+                                //    }
+                                //}
+                                //else if (range > 64)
+                                //{
+                                //    PrivateHEX0 = PrivateHEX0[^64..];
+                                //    PrivateHEX1 = PrivateHEX1[^64..];
+                                //}
                                 var PrivateKeyCHILD = StringToByteArray(PrivateHEX0);
                                 var Public_key_compressed = Secp256K1Manager.GetPublicKey(PrivateKeyCHILD, true);
                                 var Public_key_uncompressed = Secp256K1Manager.GetPublicKey(PrivateKeyCHILD, false);
@@ -1052,6 +1051,7 @@ namespace Generator_Mnemonics
                                 //var address_uncompressed = GetHash160(Public_key_uncompressed);
                                 
                                 var eth_adr = GetEthAddress(Public_key_uncompressed);
+                                //var eth_adr0x = "0x" + eth_adr;
                                 Interlocked.Increment(ref Total);
 
                                 string address_segwit;
@@ -1064,7 +1064,7 @@ namespace Generator_Mnemonics
                                 bool flag = HasBalance(address_compressed);
                                 bool flag0 = HasBalance(address_uncompressed);
                                 
-                                bool flag2 = HasBalance(eth_adr);
+                                bool flag2 = HasBalance(eth_adr) || HasBalance("0x" + eth_adr);
 
                                 if ((flag != false) || (flag0 != false) || (flag1 != false) || (flag2 != false))
                                 {
@@ -1119,7 +1119,7 @@ namespace Generator_Mnemonics
                                 flag = HasBalance(address_compressed);
                                 flag0 = HasBalance(address_uncompressed);
                                 //flag1 = HasBalance(address_segwit);
-                                flag2 = HasBalance(eth_adr);
+                                flag2 = HasBalance(eth_adr) || HasBalance("0x" + eth_adr);
 
                                 if ((flag != false) || (flag0 != false) || (flag1 != false) || (flag2 != false))
                                 {
@@ -1179,7 +1179,7 @@ namespace Generator_Mnemonics
                             bool flag = HasBalance(address_compressed);
                             bool flag0 = HasBalance(address_uncompressed);
                             //bool flag1 = HasBalance(address_segwit);
-                            bool flag2 = HasBalance(eth_adr);
+                            bool flag2 = HasBalance(eth_adr) || HasBalance("0x" + eth_adr);
 
                             if ((flag != false) || (flag0 != false) || (flag1 != false) || (flag2 != false))
                             {
@@ -1347,33 +1347,33 @@ namespace Generator_Mnemonics
                         if (IncrementalSearch != 0)
                         {
                             long n = 0;
-                            BigInteger PrivateDEC = BigInteger.Parse("0" + BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
+                            BigInteger PrivateDEC = BigInteger.Parse(BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
                             while (n <= IncrementalSearch)
                             {
                                 //Считаем Приватник + N число
                                 var PrivateDEC1 = PrivateDEC - (n * Step);
                                 var PrivateDEC0 = PrivateDEC + (n * Step);
                                 //Console.WriteLine(PrivateDEC.ToString("X32"));
-                                var PrivateHEX1 = PrivateDEC1.ToString("X32");
-                                var PrivateHEX0 = PrivateDEC0.ToString("X32");
+                                var PrivateHEX1 = PrivateDEC1.ToString("X64");
+                                var PrivateHEX0 = PrivateDEC0.ToString("X64");
                                 
                                 //Console.WriteLine(PrivateDEC0.ToString("X32"));
                                 //Console.WriteLine(PrivateDEC1.ToString("X32"));
-                                range = PrivateDEC.ToString("X32").Length;
-                                if (range < 64)
-                                {
-                                    while (range < 64)
-                                    {
-                                        PrivateHEX0 = '0' + PrivateHEX0;
-                                        PrivateHEX1 = '0' + PrivateHEX1;
-                                        range++;
-                                    }
-                                }
-                                else if (range > 64)
-                                {
-                                    PrivateHEX0 = PrivateHEX0[^64..];
-                                    PrivateHEX1 = PrivateHEX1[^64..];
-                                }
+                                //range = PrivateDEC.ToString("X32").Length;
+                                //if (range < 64)
+                                //{
+                                //    while (range < 64)
+                                //    {
+                                //        PrivateHEX0 = '0' + PrivateHEX0;
+                                //        PrivateHEX1 = '0' + PrivateHEX1;
+                                //        range++;
+                                //    }
+                                //}
+                                //else if (range > 64)
+                                //{
+                                //    PrivateHEX0 = PrivateHEX0[^64..];
+                                //    PrivateHEX1 = PrivateHEX1[^64..];
+                                //}
                                 var PrivateKeyCHILD = StringToByteArray(PrivateHEX0);
                                 var Public_key_compressed = Secp256K1Manager.GetPublicKey(PrivateKeyCHILD, true);
                                 var Public_key_uncompressed = Secp256K1Manager.GetPublicKey(PrivateKeyCHILD, false);
@@ -1690,33 +1690,33 @@ namespace Generator_Mnemonics
                         if (IncrementalSearch != 0)
                         {
                             long n = 0;
-                            BigInteger PrivateDEC = BigInteger.Parse("0" + BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
+                            BigInteger PrivateDEC = BigInteger.Parse(BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
                             while (n <= IncrementalSearch)
                             {
                                 //Считаем Приватник + N число
                                 var PrivateDEC1 = PrivateDEC - (n * Step);
                                 var PrivateDEC0 = PrivateDEC + (n * Step);
                                 //Console.WriteLine(PrivateDEC.ToString("X32"));
-                                var PrivateHEX1 = PrivateDEC1.ToString("X32");
-                                var PrivateHEX0 = PrivateDEC0.ToString("X32");
+                                var PrivateHEX1 = PrivateDEC1.ToString("X64");
+                                var PrivateHEX0 = PrivateDEC0.ToString("X64");
 
                                 //Console.WriteLine(PrivateDEC0.ToString("X32"));
                                 //Console.WriteLine(PrivateDEC1.ToString("X32"));
-                                range = PrivateDEC.ToString("X32").Length;
-                                if (range < 64)
-                                {
-                                    while (range < 64)
-                                    {
-                                        PrivateHEX0 = '0' + PrivateHEX0;
-                                        PrivateHEX1 = '0' + PrivateHEX1;
-                                        range++;
-                                    }
-                                }
-                                else if (range > 64)
-                                {
-                                    PrivateHEX0 = PrivateHEX0[^64..];
-                                    PrivateHEX1 = PrivateHEX1[^64..];
-                                }
+                                //range = PrivateDEC.ToString("X32").Length;
+                                //if (range < 64)
+                                //{
+                                //    while (range < 64)
+                                //    {
+                                //        PrivateHEX0 = '0' + PrivateHEX0;
+                                //        PrivateHEX1 = '0' + PrivateHEX1;
+                                //        range++;
+                                //    }
+                                //}
+                                //else if (range > 64)
+                                //{
+                                //    PrivateHEX0 = PrivateHEX0[^64..];
+                                //    PrivateHEX1 = PrivateHEX1[^64..];
+                                //}
                                 var PrivateKeyCHILD = StringToByteArray(PrivateHEX0);
                                 
                                 var Public_key_uncompressed = Secp256K1Manager.GetPublicKey(PrivateKeyCHILD, false);
@@ -1724,10 +1724,9 @@ namespace Generator_Mnemonics
                                 var eth_adr = GetEthAddress(Public_key_uncompressed);
                                 Interlocked.Increment(ref Total);
                                 //var Public_key_compressed = Secp256K1Manager.GetPublicKey(PrivateKey, true);
-                                bool flag = HasBalance(eth_adr);
-                                bool flag0 = HasBalance("0x" + eth_adr);
+                                bool flag = HasBalance(eth_adr) || HasBalance("0x" + eth_adr);
 
-                                if ((flag != false) || (flag0 != false))
+                                if ((flag != false))
                                 {
                                     Console.WriteLine(eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = +" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nAddress: 0x{eth_adr} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)}  \nEntropy: {BytesToHexString(seedBytes)}  \nMnemonic phrase: {seed} \n Derivation PATH: {DER_PATH}");
@@ -1767,10 +1766,9 @@ namespace Generator_Mnemonics
                                 eth_adr = GetEthAddress(Public_key_uncompressed);
                                 Interlocked.Increment(ref Total);
                                 //var Public_key_compressed = Secp256K1Manager.GetPublicKey(PrivateKey, true);
-                                flag = HasBalance(eth_adr);
-                                flag0 = HasBalance("0x" + eth_adr);
+                                flag = HasBalance(eth_adr) || HasBalance("0x" + eth_adr);
 
-                                if ((flag != false) || (flag0 != false))
+                                if ((flag != false))
                                 {
                                     Console.WriteLine(eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKeyCHILD) + "   N = -" + (n*Step).ToString("X8") + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                     string contents = string.Format($" \n\nAddress: 0x{eth_adr} \nPrivate Key: {BytesToHexString(PrivateKeyCHILD)}  \nEntropy: {BytesToHexString(seedBytes)}  \nMnemonic phrase: {seed} \n Derivation PATH: {DER_PATH}");
@@ -1817,10 +1815,9 @@ namespace Generator_Mnemonics
                             //var address_segwit = GetSegWit_base58(Public_key_compressed);
                             var eth_adr = GetEthAddress(Public_key_uncompressed);
                             Interlocked.Increment(ref Total);
-                            bool flag = HasBalance(eth_adr);
-                            bool flag0 = HasBalance("0x" + eth_adr);
+                            bool flag = HasBalance(eth_adr) || HasBalance("0x" + eth_adr);
 
-                            if ((flag != false) || (flag0 != false))
+                            if ((flag != false))
                             {
                                 Console.WriteLine(eth_adr + "\nmnemonic: " + seed + "\nPrivate Key: " + BytesToHexString(PrivateKey) + "\nEntropy: " + BytesToHexString(seedBytes) + "\nDer.PATH: " + DER_PATH + "\nTotal: " + Total + " Found: " + Found + " Speed: " + speed + '\n');
                                 string contents = string.Format($" \n\nAddress: 0x{eth_adr} \nPrivate Key: {BytesToHexString(PrivateKey)}  \nEntropy: {BytesToHexString(seedBytes)}  \nMnemonic phrase: {seed} \n Derivation PATH: {DER_PATH}");
@@ -1984,33 +1981,33 @@ namespace Generator_Mnemonics
                         if (IncrementalSearch != 0)
                         {
                             long n = 0;
-                            BigInteger PrivateDEC = BigInteger.Parse("0" + BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
+                            BigInteger PrivateDEC = BigInteger.Parse(BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
                             while (n <= IncrementalSearch)
                             {
                                 //Считаем Приватник + N число
                                 var PrivateDEC1 = PrivateDEC - (n * Step);
                                 var PrivateDEC0 = PrivateDEC + (n * Step);
                                 //Console.WriteLine(PrivateDEC.ToString("X32"));
-                                var PrivateHEX1 = PrivateDEC1.ToString("X32");
-                                var PrivateHEX0 = PrivateDEC0.ToString("X32");
+                                var PrivateHEX1 = PrivateDEC1.ToString("X64");
+                                var PrivateHEX0 = PrivateDEC0.ToString("X64");
 
                                 //Console.WriteLine(PrivateDEC0.ToString("X32"));
                                 //Console.WriteLine(PrivateDEC1.ToString("X32"));
-                                range = PrivateDEC.ToString("X32").Length;
-                                if (range < 64)
-                                {
-                                    while (range < 64)
-                                    {
-                                        PrivateHEX0 = '0' + PrivateHEX0;
-                                        PrivateHEX1 = '0' + PrivateHEX1;
-                                        range++;
-                                    }
-                                }
-                                else if (range > 64)
-                                {
-                                    PrivateHEX0 = PrivateHEX0[^64..];
-                                    PrivateHEX1 = PrivateHEX1[^64..];
-                                }
+                                //range = PrivateDEC.ToString("X32").Length;
+                                //if (range < 64)
+                                //{
+                                //    while (range < 64)
+                                //    {
+                                //        PrivateHEX0 = '0' + PrivateHEX0;
+                                //        PrivateHEX1 = '0' + PrivateHEX1;
+                                //        range++;
+                                //    }
+                                //}
+                                //else if (range > 64)
+                                //{
+                                //    PrivateHEX0 = PrivateHEX0[^64..];
+                                //    PrivateHEX1 = PrivateHEX1[^64..];
+                                //}
                                 var PrivateKeyCHILD = StringToByteArray(PrivateHEX0);
                                 var Public_key_compressed = Secp256K1Manager.GetPublicKey(PrivateKeyCHILD, true);
                                 var Public_key_uncompressed = Secp256K1Manager.GetPublicKey(PrivateKeyCHILD, false);
@@ -2278,33 +2275,33 @@ namespace Generator_Mnemonics
                         if (IncrementalSearch != 0)
                         {
                             long n = 0;
-                            BigInteger PrivateDEC = BigInteger.Parse("0" + BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
+                            BigInteger PrivateDEC = BigInteger.Parse(BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
                             while (n <= IncrementalSearch)
                             {
                                 //Считаем Приватник + N число
                                 var PrivateDEC1 = PrivateDEC - (n * Step);
                                 var PrivateDEC0 = PrivateDEC + (n * Step);
                                 //Console.WriteLine(PrivateDEC.ToString("X32"));
-                                var PrivateHEX1 = PrivateDEC1.ToString("X32");
-                                var PrivateHEX0 = PrivateDEC0.ToString("X32");
+                                var PrivateHEX1 = PrivateDEC1.ToString("X64");
+                                var PrivateHEX0 = PrivateDEC0.ToString("X64");
 
                                 //Console.WriteLine(PrivateDEC0.ToString("X32"));
                                 //Console.WriteLine(PrivateDEC1.ToString("X32"));
-                                range = PrivateDEC.ToString("X32").Length;
-                                if (range < 64)
-                                {
-                                    while (range < 64)
-                                    {
-                                        PrivateHEX0 = '0' + PrivateHEX0;
-                                        PrivateHEX1 = '0' + PrivateHEX1;
-                                        range++;
-                                    }
-                                }
-                                else if (range > 64)
-                                {
-                                    PrivateHEX0 = PrivateHEX0[^64..];
-                                    PrivateHEX1 = PrivateHEX1[^64..];
-                                }
+                                //range = PrivateDEC.ToString("X32").Length;
+                                //if (range < 64)
+                                //{
+                                //    while (range < 64)
+                                //    {
+                                //        PrivateHEX0 = '0' + PrivateHEX0;
+                                //        PrivateHEX1 = '0' + PrivateHEX1;
+                                //        range++;
+                                //    }
+                                //}
+                                //else if (range > 64)
+                                //{
+                                //    PrivateHEX0 = PrivateHEX0[^64..];
+                                //    PrivateHEX1 = PrivateHEX1[^64..];
+                                //}
                                 var PrivateKeyCHILD = StringToByteArray(PrivateHEX0);
                                 var Public_key_compressed = Secp256K1Manager.GetPublicKey(PrivateKeyCHILD, true);
                                 var Public_key_uncompressed = Secp256K1Manager.GetPublicKey(PrivateKeyCHILD, false);
@@ -2567,33 +2564,36 @@ namespace Generator_Mnemonics
                         if (IncrementalSearch != 0)
                         {
                             long n = 0;
-                            BigInteger PrivateDEC = BigInteger.Parse("0" + BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
+                            BigInteger PrivateDEC = BigInteger.Parse(BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
                             while (n <= IncrementalSearch)
                             {
                                 //Считаем Приватник + - N число
                                 var PrivateDEC1 = PrivateDEC - (n * Step);
                                 var PrivateDEC0 = PrivateDEC + (n * Step);
                                 //Console.WriteLine(PrivateDEC.ToString("X32"));
-                                var PrivateHEX1 = PrivateDEC1.ToString("X32");
-                                var PrivateHEX0 = PrivateDEC0.ToString("X32");
+                                var PrivateHEX1 = PrivateDEC1.ToString("X64");
+                                var PrivateHEX0 = PrivateDEC0.ToString("X64");
 
+                                //Console.WriteLine(Step);
                                 //Console.WriteLine(PrivateDEC0.ToString("X32"));
                                 //Console.WriteLine(PrivateDEC1.ToString("X32"));
-                                range = PrivateDEC.ToString("X32").Length;
-                                if (range < 64)
-                                {
-                                    while (range < 64)
-                                    {
-                                        PrivateHEX0 = '0' + PrivateHEX0;
-                                        PrivateHEX1 = '0' + PrivateHEX1;
-                                        range++;
-                                    }
-                                }
-                                else if (range > 64)
-                                {
-                                    PrivateHEX0 = PrivateHEX0[^64..];
-                                    PrivateHEX1 = PrivateHEX1[^64..];
-                                }
+                                //var range1 = PrivateDEC.ToString("X64").Length;
+                                //range = PrivateDEC.ToString("X32").Length;
+                                //Console.WriteLine(range1);
+                                //if (range < 64)
+                                //{
+                                //    while (range < 64)
+                                //    {
+                                //        PrivateHEX0 = '0' + PrivateHEX0;
+                                //        PrivateHEX1 = '0' + PrivateHEX1;
+                                //        range++;
+                                //    }
+                                //}
+                                //else if (range > 64)
+                                //{
+                                //    PrivateHEX0 = PrivateHEX0[^64..];
+                                //    PrivateHEX1 = PrivateHEX1[^64..];
+                                //}
                                 Console.WriteLine(PrivateHEX0);
                                 Console.WriteLine(PrivateHEX1);
                                 n++;
@@ -2876,9 +2876,9 @@ namespace Generator_Mnemonics
                     BigInteger a = BigInteger.Parse("0" + BytesToHexString(PrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
                     BigInteger b = BigInteger.Parse("0" + BytesToHexString(masterPrivateKey), System.Globalization.NumberStyles.AllowHexSpecifier);
                     BigInteger key1 = (a + b) % order;
-                    if ((key1.ToString("X32").Length > 64))
+                    if ((key1.ToString("X64").Length > 64))
                     {
-                        var key_string = key1.ToString("X32")[^64..];
+                        var key_string = key1.ToString("X64")[^64..];
                         key1 = BigInteger.Parse(key_string, System.Globalization.NumberStyles.AllowHexSpecifier);
                     }
                     if ((a < order) && (key1 != 0))
